@@ -1,5 +1,5 @@
 site_name: hardwatt
-pages:  
+pages:
   - [index.md, Home]
   - [CIS_Ubuntu.md]
   - [tests.md, Tests]

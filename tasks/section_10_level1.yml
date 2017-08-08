@@ -106,7 +106,7 @@
     tags:
       - section10
       - section10.5
-        
+
   - name: 10.5.2 Lock Inactive User Accounts (Scored)
     lineinfile: >
         dest=/etc/login.defs
@@ -116,4 +116,3 @@
     tags:
       - section10
       - section10.5
-

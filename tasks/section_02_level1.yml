@@ -131,7 +131,7 @@
     tags:
       - section2
       - section2.25
-      
+
   - name: 2.25.2 Disable Automounting (Scored)
     lineinfile: >
         dest=/etc/init/autofs.conf

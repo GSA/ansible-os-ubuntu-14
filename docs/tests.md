@@ -81,4 +81,3 @@ This section configures logs and rights.
 ## Section 013
 
 [![Status: Skipped](https://img.shields.io/badge/Status-Skipped-red.svg)]
-
