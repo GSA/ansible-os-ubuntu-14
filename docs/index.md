@@ -2,8 +2,8 @@
 
 This documentation provides a description of the Hardwatt project. Hardwatt project provides a tool for establishing a secure configuration posture for server hosted in Openwatt infrastruture.
 
-The secure configuration recommandations are based on the 
-CIS Security Benchmarks program which provides industry best practices to help organizations assess and improve their security. 
+The secure configuration recommandations are based on the
+CIS Security Benchmarks program which provides industry best practices to help organizations assess and improve their security.
 
 To obtain the latest version of the CIS Security Benchmarks please visit http://benchmarks.cisecurity.org.
 

@@ -60,7 +60,7 @@ class TestBook(object):
 
             if not tname in s:
                 s[tname] = {}
-                s[tname]["name"] = tname 
+                s[tname]["name"] = tname
                 s[tname]["source_digest"] = hashlib.md5(data).hexdigest()
                 s[tname]["coverage"] = [0] * len(data.split('\n'))
 
