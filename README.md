@@ -1,4 +1,5 @@
 # ansible-os-ubuntu-14
+[![CircleCI](https://circleci.com/gh/GSA/ansible-os-ubuntu-14.svg?style=svg)](https://circleci.com/gh/GSA/ansible-os-ubuntu-14)
 Ansible Roles for Ubuntu 14
 
 # To Do
