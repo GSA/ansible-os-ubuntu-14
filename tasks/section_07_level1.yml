@@ -166,6 +166,9 @@
       value=1
       state=present
     when: enable_tcp_syncookies
+    #FIXME
+    ignore_errors: True    
+    
     tags:
       - section7
       - section7.2
@@ -180,6 +183,8 @@
       - section7
       - section7.3
       - section7.3.1
+    #FIXME
+    ignore_errors: True    
 
   - name: 7.3.1.2 Disable IPv6 Router Advertisements (Not Scored)
     sysctl: >
@@ -190,6 +195,8 @@
       - section7
       - section7.3
       - section7.3.1
+    #FIXME
+    ignore_errors: True          
 
   - name: 7.3.2.1 Disable IPv6 Redirect Acceptance (Not Scored)
     sysctl: >
@@ -200,6 +207,8 @@
       - section7
       - section7.3
       - section7.3.2
+    #FIXME
+    ignore_errors: True          
 
   - name: 7.3.2.2 Disable IPv6 Redirect Acceptance (Not Scored)
     sysctl: >
@@ -210,6 +219,8 @@
       - section7
       - section7.3
       - section7.3.2
+    #FIXME
+    ignore_errors: True          
 
   - name: 7.3.3 Disable IPv6 (Not Scored)
     sysctl: >
@@ -225,6 +236,8 @@
       - section7
       - section7.3
       - section7.3.3
+    #FIXME
+    ignore_errors: True          
 
   - name: 7.4.1 Install TCP Wrappers (Scored)
     apt: name=tcpd state=present
