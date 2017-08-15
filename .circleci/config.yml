@@ -18,6 +18,7 @@ jobs:
       - run:
           name: Run test-kitchen
           command: bundle exec kitchen test test-ubuntu-1404
+          
 workflows:
   version: 2
   build:
