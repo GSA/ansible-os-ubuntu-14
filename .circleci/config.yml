@@ -17,7 +17,7 @@ jobs:
           command: bundle install
       - run:
           name: Run test-kitchen
-          command: bundle exec kitchen test os-ubuntu1404-ansible-latest
+          command: bundle exec kitchen test test-ubuntu-1404
 workflows:
   version: 2
   build:
