@@ -137,7 +137,7 @@
       - id_4.2.2.3
 
 - name: "SCORED | 4.2.3 | Ensure rsyslog or syslog-ng is installed"
-  yum:
+  apt:
       name: rsyslog
       state: present
   when: rhel7gsa_logging == "rsyslog" and rhel7gsa_config_logging == true
@@ -145,7 +145,7 @@
       - id_4.2.3
 
 - name: "SCORED | 4.2.3 | Ensure rsyslog or syslog-ng is installed"
-  yum:
+  apt:
       name: syslog-ng
       state: present
   when: rhel7gsa_logging == "syslog-ng" and rhel7gsa_config_logging == true

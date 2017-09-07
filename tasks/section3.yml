@@ -175,7 +175,7 @@
       - id_3.3.3
 
 - name: "SCORED | 3.4.1 | Ensure TCP Wrappers is installed"
-  yum:
+  apt:
     name: tcp_wrappers
     state: present
   tags:
@@ -237,7 +237,7 @@
       - id_3.5.4
 
 - name: "SCORED | 3.6 | Ensure firewalld is installed and started | CUSTOM"
-  yum:
+  apt:
       name: firewalld
       state: present
   when: rhel7gsa_firewall == "firewalld"
@@ -254,7 +254,7 @@
       - id_3.6
 
 - name: "SCORED | 3.6.1 | Ensure iptables is installed"
-  yum:
+  apt:
       name: iptables
       state: present
   when: rhel7gsa_firewall == "iptables"

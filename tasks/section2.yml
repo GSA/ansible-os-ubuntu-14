@@ -156,7 +156,7 @@
 
 
 - name: "SCORED | 2.2.2 | Ensure X Window System in not installed"
-  yum:
+  apt:
       name: xorg-x11-server-common.x86_64
       state: absent
   tags:
@@ -378,7 +378,7 @@
       - id_2.2.21
 
 - name: "SCORED | 2.3.1 | Ensure NIS Client is not installed"
-  yum:
+  apt:
       name: ypbind
       state: absent
   when: rhel7gsa_ypbind_required == false
@@ -386,7 +386,7 @@
       - id_2.3.1
 
 - name: "SCORED | 2.3.2 | Ensure rsh client is not installed"
-  yum:
+  apt:
       name: rsh
       state: absent
   when: rhel7gsa_rsh_required == false
@@ -394,7 +394,7 @@
       - id_2.3.2
 
 - name: "SCORED | 2.3.3 | Ensure talk client is not installed"
-  yum:
+  apt:
       name: talk
       state: absent
   when: rhel7gsa_talk_required == false
@@ -402,7 +402,7 @@
       - id_2.3.3
 
 - name: "SCORED | 2.3.4 | Ensure telnet client is not installed"
-  yum:
+  apt:
       name: telnet
       state: absent
   when: rhel7gsa_telnet_required == false
@@ -410,7 +410,7 @@
       - id_2.3.4
 
 - name: "SCORED | 2.3.5 | Ensure LDAP client is not installed"
-  yum:
+  apt:
       name: openldap-clients
       state: absent
   when: rhel7gsa_openldap_clients_required == false

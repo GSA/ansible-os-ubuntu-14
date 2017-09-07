@@ -87,45 +87,8 @@
   tags:
       - id_1.1.22
 
-- name: "SCORED | 1.2.2| Ensure gpgcheck is globally activated"
-  replace:
-      name: /etc/yum.conf
-      regexp: "^gpgcheck=0"
-      replace: "gpgcheck=1"
-  tags:
-      - id_1.2.2
-
-- name: "SCORED | 1.2.2| Ensure gpgcheck is globally activated"
-  find:
-      paths: /etc/yum.repos.d
-      patterns: "*.repo"
-  register: yum_repos
-  changed_when: no
-  tags:
-      - id_1.2.2
-
-- name: "SCORED | 1.2.2| Ensure gpgcheck is globally activated"
-  replace:
-      name: "{{ item.path }}"
-      regexp: "^gpgcheck=0"
-      replace: "gpgcheck=1"
-  with_items:
-      - "{{ yum_repos.files }}"
-  tags:
-      - id_1.2.2
-
-- name: "UNSCORED | 1.2.5| Disable the rhnsd Daemon"
-  service:
-      name: rhnsd
-      state: stopped
-      enabled: no
-  when: ansible_distribution == "RedHat" and rhnsd_service_status and not rhel7gsa_rhnsd_required
-  tags:
-      - id_1.2.5
-
-
 - name: "SCORED | 1.3.1 | Ensure AIDE is installed"
-  yum:
+  apt:
       name: aide
       state: present
   when: rhel7gsa_config_aide == "true"
@@ -216,7 +179,7 @@
       - id_1.5.3
 
 - name: "SCORED | 1.5.4 | Ensure prelink is disabled"
-  yum:
+  apt:
     name: prelink
     state: absent
   tags:
@@ -245,7 +208,7 @@
 
 - name: "UNSCORED | 1.6.1.4 | Ensure SETroubleshoot is not installed"
   when: ansible_selinux is defined and ansible_selinux != False and ansible_selinux.status == 'enabled'
-  yum:
+  apt:
       name: setroubleshoot
       state: absent
   tags:
@@ -253,7 +216,7 @@
       - id_1.6.1.4
 
 - name: "UNSCORED | 1.6.1.5 | Ensure the MCS Translation Service (mcstrans) is not installed"
-  yum:
+  apt:
       name: mcstrans
       state: absent
   tags:
@@ -261,7 +224,7 @@
 
 - name: "SCORED | 1.6.2 | Ensure SELinux is installed"
   when: ansible_selinux is defined and ansible_selinux != False and ansible_selinux.status == 'enabled'
-  yum:
+  apt:
       name: libselinux
       state: present
   tags:
@@ -323,7 +286,7 @@
       - id_1.7.1.6
 
 - name: "UNSCORED | 1.8 | Ensure updates, patches, and additional security software are installed"
-  yum:
+  apt:
       name: "*"
       state: latest
   tags:
