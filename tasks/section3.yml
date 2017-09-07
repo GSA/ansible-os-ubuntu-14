@@ -176,7 +176,7 @@
 
 - name: "SCORED | 3.4.1 | Ensure TCP Wrappers is installed"
   apt:
-    name: tcp_wrappers
+    name: tcpd
     state: present
   tags:
       - id_3.4.1
