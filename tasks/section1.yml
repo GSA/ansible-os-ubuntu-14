@@ -288,6 +288,6 @@
 - name: "UNSCORED | 1.8 | Ensure updates, patches, and additional security software are installed"
   apt:
       update_cache: yes
-      
+      upgrade: dist
   tags:
       - id_1.8
