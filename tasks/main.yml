@@ -6,10 +6,10 @@
 #  - include: section1.yml
 #    tags: section1
 
-  - include: section2.yml
+#  - include: section2.yml
 #    tags: section2
 
-#  - include: section3.yml
+  - include: section3.yml
 #    tags: section3
 
 #  - include: section4.yml
