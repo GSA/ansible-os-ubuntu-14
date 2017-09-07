@@ -287,7 +287,7 @@
 
 - name: "UNSCORED | 1.8 | Ensure updates, patches, and additional security software are installed"
   apt:
-      name: "*"
-      state: latest
+      update_cache: yes
+      
   tags:
       - id_1.8
