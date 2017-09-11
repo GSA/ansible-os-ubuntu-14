@@ -18,8 +18,8 @@
 #  - include: section5.yml
 #    tags: section5
 
-#  - include: section6.yml
+  - include: section6.yml
 #    tags: section6
 
-  - include: testing.yml
+#  - include: testing.yml
 #    tags: section6
