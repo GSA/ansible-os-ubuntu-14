@@ -96,7 +96,7 @@
       - id_4.1.15
 
 - name: "SCORED | 4.2.1.1 Ensure rsyslog Service is enabled"
-  systemd:
+  service:
       name: rsyslog
       enabled: yes
       state: started
@@ -116,7 +116,7 @@
       - id_4.2.1.3
 
 - name: "SCORED | 4.2.2.1 Ensure rsyslog Service is enabled"
-  systemd:
+  service:
       name: syslog-ng
       enabled: yes
       state: started
