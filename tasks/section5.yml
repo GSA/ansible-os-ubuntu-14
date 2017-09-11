@@ -1,6 +1,6 @@
 - name: "SCORED | 5.1.1 | Ensure cron daemon is enabled"
   service:
-      name: crond
+      name: cron
       enabled: yes
   tags:
       - id_5.1.1
