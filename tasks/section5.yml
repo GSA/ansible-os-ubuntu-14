@@ -241,6 +241,11 @@
       - id_5.2.16
 
 - name: "SCORED | 5.3.1 | Ensure password creation requirements are configured"
+  apt:
+    name: libpam-pwquality
+    state: present
+
+- name: "SCORED | 5.3.1 | Ensure password creation requirements are configured"
   lineinfile:
       state: present
       dest: /etc/security/pwquality.conf
