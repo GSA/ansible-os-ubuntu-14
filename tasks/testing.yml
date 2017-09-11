@@ -2,7 +2,7 @@
     shell: 'echo $PATH | grep ::'
     register: path_colon
     changed_when: False
-    always_run: True
+    check_mode: no
     failed_when: path_colon.rc == 0
     tags:
       - section13
@@ -12,7 +12,7 @@
     shell: 'echo $PATH | grep :$'
     register: path_colon_end
     changed_when: False
-    always_run: True
+    check_mode: no
     failed_when: path_colon_end.rc == 0
     tags:
       - section13
@@ -23,7 +23,7 @@
     become: yes
     register: dot_in_path
     changed_when: False
-    always_run: True
+    check_mode: no
     failed_when: '"." in dot_in_path.stdout_lines'
     tags:
       - section13
