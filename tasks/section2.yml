@@ -140,7 +140,7 @@
 
 - name: "SCORED | 2.1.6 | Ensure tftp server is not enabled"
   command: chkconfig tftp off
-  when: tftp_service.stat.exists and rhel7gsa_tftp_server == false
+  when: tftp_service.stat.exists and ubu14gsa_tftp_server == false
   tags:
       - id_2.1.6
 
@@ -150,7 +150,7 @@
       state: stopped
       enabled: no
   when:
-      - xinetd_service_status.stdout == "loaded" and not rhel7gsa_xinetd_required
+      - xinetd_service_status.stdout == "loaded" and not ubu14gsa_xinetd_required
   tags:
       - id_2.1.7
 
@@ -167,7 +167,7 @@
       name: avahi-daemon
       state: stopped
       enabled: no
-  when: rhel7gsa_avahi_server == false and avahi_service_status.stdout == "loaded"
+  when: ubu14gsa_avahi_server == false and avahi_service_status.stdout == "loaded"
   tags:
       - avahi
       - services
@@ -178,7 +178,7 @@
       name: cups
       state: stopped
       enabled: no
-  when: rhel7gsa_cups_server == false and cups_service_status.stdout == "loaded"
+  when: ubu14gsa_cups_server == false and cups_service_status.stdout == "loaded"
   tags:
       - cups
       - services
@@ -189,7 +189,7 @@
       name: dhcpd
       state: stopped
       enabled: no
-  when: rhel7gsa_dhcp_server == false and dhcpd_service_status.stdout == "loaded"
+  when: ubu14gsa_dhcp_server == false and dhcpd_service_status.stdout == "loaded"
   tags:
       - dhcp
       - services
@@ -201,7 +201,7 @@
       name: slapd
       state: stopped
       enabled: no
-  when: rhel7gsa_ldap_server == false and slapd_service_status.stdout == "loaded"
+  when: ubu14gsa_ldap_server == false and slapd_service_status.stdout == "loaded"
   tags:
       - ldap
       - services
@@ -212,7 +212,7 @@
       name: nfs
       state: stopped
       enabled: no
-  when: rhel7gsa_nfs_rpc_server == false and nfs_service_status.stdout == "loaded"
+  when: ubu14gsa_nfs_rpc_server == false and nfs_service_status.stdout == "loaded"
   tags:
       - nfs
       - rpc
@@ -224,7 +224,7 @@
       name: rpcbind
       state: stopped
       enabled: no
-  when: rhel7gsa_nfs_rpc_server == false and rpcbind_service_status.stdout == "loaded"
+  when: ubu14gsa_nfs_rpc_server == false and rpcbind_service_status.stdout == "loaded"
   tags:
       - nfs
       - rpc
@@ -236,7 +236,7 @@
       name: named
       state: stopped
       enabled: no
-  when: rhel7gsa_named_server == false and named_service_status.stdout == "loaded"
+  when: ubu14gsa_named_server == false and named_service_status.stdout == "loaded"
   tags:
       - id_2.2.8
 
@@ -245,7 +245,7 @@
       name: vsftpd
       state: stopped
       enabled: no
-  when: rhel7gsa_vsftpd_server == false and vsftpd_service_status.stdout == "loaded"
+  when: ubu14gsa_vsftpd_server == false and vsftpd_service_status.stdout == "loaded"
   tags:
       - id_2.2.9
 
@@ -254,7 +254,7 @@
       name: httpd
       state: stopped
       enabled: no
-  when: rhel7gsa_httpd_server == false and httpd_service_status.stdout == "loaded"
+  when: ubu14gsa_httpd_server == false and httpd_service_status.stdout == "loaded"
   tags:
       - id_2.2.10
 
@@ -263,7 +263,7 @@
       name: dovecot
       state: stopped
       enabled: no
-  when: rhel7gsa_dovecot_server == false and dovecot_service_status.stdout == "loaded"
+  when: ubu14gsa_dovecot_server == false and dovecot_service_status.stdout == "loaded"
   tags:
       - id_2.2.11
 
@@ -272,7 +272,7 @@
       name: smbd
       state: stopped
       enabled: no
-  when: rhel7gsa_smb_server == false and smb_service_status.stdout == "loaded"
+  when: ubu14gsa_smb_server == false and smb_service_status.stdout == "loaded"
   tags:
       - id_2.2.12
 
@@ -281,7 +281,7 @@
       name: squid3
       state: stopped
       enabled: no
-  when: rhel7gsa_squid_server == false and squid_service_status.stdout == "loaded"
+  when: ubu14gsa_squid_server == false and squid_service_status.stdout == "loaded"
   tags:
       - id_2.2.13
 
@@ -290,7 +290,7 @@
       name: snmpd
       state: stopped
       enabled: no
-  when: rhel7gsa_snmp_server == false and snmpd_service_status.stdout == "loaded"
+  when: ubu14gsa_snmp_server == false and snmpd_service_status.stdout == "loaded"
   tags:
       - id_2.2.14
 
@@ -299,7 +299,7 @@
       name: ypserv
       state: stopped
       enabled: no
-  when: rhel7gsa_nis_server == false and ypserv_service_status.stdout == "loaded"
+  when: ubu14gsa_nis_server == false and ypserv_service_status.stdout == "loaded"
   tags:
       - id_2.2.17
 
@@ -308,7 +308,7 @@
       name: rsh.socket
       state: stopped
       enabled: no
-  when: rhel7gsa_rsh_server == false and rsh_service_status.stdout == "loaded"
+  when: ubu14gsa_rsh_server == false and rsh_service_status.stdout == "loaded"
   tags:
       - id_2.2.17
 
@@ -317,7 +317,7 @@
       name: rlogin.socket
       state: stopped
       enabled: no
-  when: rhel7gsa_rsh_server == false and rlogin_service_status.stdout == "loaded"
+  when: ubu14gsa_rsh_server == false and rlogin_service_status.stdout == "loaded"
   tags:
       - id_2.2.17
 
@@ -326,7 +326,7 @@
       name: rexec.socket
       state: stopped
       enabled: no
-  when: rhel7gsa_rsh_server == false and rexec_service_status.stdout == "loaded"
+  when: ubu14gsa_rsh_server == false and rexec_service_status.stdout == "loaded"
   tags:
       - id_2.2.17
 
@@ -335,7 +335,7 @@
       name: ntalk
       state: stopped
       enabled: no
-  when: rhel7gsa_ntalk_server == false and ntalk_service_status.stdout == "loaded"
+  when: ubu14gsa_ntalk_server == false and ntalk_service_status.stdout == "loaded"
   tags:
       - id_2.2.18
 
@@ -344,7 +344,7 @@
       name: telnet
       state: stopped
       enabled: no
-  when: rhel7gsa_telnet_server == false and telnet_service_status.stdout == "loaded"
+  when: ubu14gsa_telnet_server == false and telnet_service_status.stdout == "loaded"
   tags:
       - id_2.2.19
 
@@ -353,7 +353,7 @@
       name: tftp
       state: stopped
       enabled: no
-  when: rhel7gsa_tftp_server == false and tftp_service_status.stdout == "loaded"
+  when: ubu14gsa_tftp_server == false and tftp_service_status.stdout == "loaded"
   tags:
       - insecure_services
       - tftp
@@ -364,7 +364,7 @@
       name: rsyncd
       state: stopped
       enabled: no
-  when: rhel7gsa_rsyncd_server == false and rsyncd_service_status.stdout == "loaded"
+  when: ubu14gsa_rsyncd_server == false and rsyncd_service_status.stdout == "loaded"
   tags:
       - id_2.2.21
 
@@ -373,7 +373,7 @@
       name: ntalk
       state: stopped
       enabled: no
-  when: rhel7gsa_ntalk_server == false and ntalk_service_status.stdout == "loaded"
+  when: ubu14gsa_ntalk_server == false and ntalk_service_status.stdout == "loaded"
   tags:
       - id_2.2.21
 
@@ -381,7 +381,7 @@
   apt:
       name: ypbind
       state: absent
-  when: rhel7gsa_ypbind_required == false
+  when: ubu14gsa_ypbind_required == false
   tags:
       - id_2.3.1
 
@@ -389,7 +389,7 @@
   apt:
       name: rsh
       state: absent
-  when: rhel7gsa_rsh_required == false
+  when: ubu14gsa_rsh_required == false
   tags:
       - id_2.3.2
 
@@ -397,7 +397,7 @@
   apt:
       name: talk
       state: absent
-  when: rhel7gsa_talk_required == false
+  when: ubu14gsa_talk_required == false
   tags:
       - id_2.3.3
 
@@ -405,7 +405,7 @@
   apt:
       name: telnet
       state: absent
-  when: rhel7gsa_telnet_required == false
+  when: ubu14gsa_telnet_required == false
   tags:
       - id_2.3.4
 
@@ -413,6 +413,6 @@
   apt:
       name: openldap-clients
       state: absent
-  when: rhel7gsa_openldap_clients_required == false
+  when: ubu14gsa_openldap_clients_required == false
   tags:
       - id_2.3.5
