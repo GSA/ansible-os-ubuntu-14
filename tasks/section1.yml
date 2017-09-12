@@ -234,6 +234,23 @@
   tags:
     - id_1.6.2.2
 
+- name: "1.6.3 | Ensure SELinux or AppArmor are installed"
+  apt:
+      name: apparmor
+      state: present
+  when: ubu14gsa_config_apparmor == true
+  tags:
+      - id_1.6.3_apparmor
+
+- name: "1.6.3 | Ensure SELinux or AppArmor are installed"
+  apt:
+      name: selinux
+      state: present
+  when: ubu14gsa_config_selinux == true
+  tags:
+      - id_1.6.3_selinux
+
+
 - name: "SCORED | 1.7.1.1 | Ensure message of the day is configured properly"
   template:
       src: motd.j2
