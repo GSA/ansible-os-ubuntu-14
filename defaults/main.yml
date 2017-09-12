@@ -53,7 +53,6 @@ ubu14gsa_ssh_required: false
 ubu14gsa_rhnsd_required: false
 
 #Bootloader password
-
 ubu14gsa_bootloader_password: random
 ubu14gsa_set_boot_pass: false
 
@@ -68,6 +67,7 @@ ubu14gsa_ipv6_required: true
 
 # AIDE
 ubu14gsa_config_aide: true
+
 # AIDE cron settings
 ubu14gsa_aide_cron:
   cron_user: root
@@ -84,7 +84,6 @@ ubu14gsa_selinux_pol: targeted
 
 # Set to 'true' if X Windows is needed in your environment
 ubu14gsa_xwindows_required: no
-
 ubu14gsa_openldap_clients_required: false
 ubu14gsa_telnet_required: false
 ubu14gsa_talk_required: false
