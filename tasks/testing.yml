@@ -1,18 +1,15 @@
-- name: "1.6.2.1 | Ensure AppArmor is not disabled in bootloader configuration"
-  lineinfile:
-      dest: /etc/default/grub
-      regexp: "^GRUB_CMDLINE_LINUX="
-      line: 'GRUB_CMDLINE_LINUX=apparmor="1 security=apparmor"'
+- name: "1.6.3 | Ensure SELinux or AppArmor are installed"
+  apt:
+      name: apparmor
       state: present
   when: ubu14gsa_config_apparmor == true
   tags:
-    - id_1.6.2.1
+      - id_1.6.3_apparmor
 
-- name: "1.6.2.2 |  Ensure all AppArmor Profiles are enforcing"
-  shell: for profile in /etc/apparmor.d/*; do aa-enforce $profile; done
-  register: aaenforce_rc
-  failed_when: aaenforce_rc.rc == 1
-  changed_when: False
-  when: ubu14gsa_config_apparmor == true
+- name: "1.6.3 | Ensure SELinux or AppArmor are installed"
+  apt:
+      name: selinux
+      state: present
+  when: ubu14gsa_config_selinux == true
   tags:
-    - id_1.6.2.2
+      - id_1.6.3_selinux     

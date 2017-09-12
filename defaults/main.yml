@@ -10,8 +10,6 @@ ubu14gsa_section4: true
 ubu14gsa_section5: true
 ubu14gsa_section6: true
 
-ubu14gsa_selinux_disable: false
-
 # Service configuration booleans set true to keep service
 ubu14gsa_avahi_server: false
 ubu14gsa_cups_server: false
@@ -59,6 +57,10 @@ ubu14gsa_set_boot_pass: false
 # Set this flag to use AppArmor. It is useful to disable it when the system does not support the kernel module.
 ubu14gsa_config_apparmor: true
 
+# Set this flag to use SELinux. It is useful to disable it when the system does not support the kernel module.
+ubu14gsa_config_selinux: false
+ubu14gsa_selinux_pol: targeted
+
 # System network parameters (host only OR host and router)
 ubu14gsa_is_router: false
 
@@ -78,9 +80,6 @@ ubu14gsa_aide_cron:
   aide_day: '*'
   aide_month: '*'
   aide_weekday: '*'
-
-# SELinux policy
-ubu14gsa_selinux_pol: targeted
 
 # Set to 'true' if X Windows is needed in your environment
 ubu14gsa_xwindows_required: no
