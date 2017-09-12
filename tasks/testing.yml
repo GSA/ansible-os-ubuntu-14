@@ -4,7 +4,7 @@
       regexp: "^GRUB_CMDLINE_LINUX="
       line: 'GRUB_CMDLINE_LINUX=apparmor="1 security=apparmor"'
       state: present
-  when: ubu14gsa_config_apparmor == "true"
+  when: ubu14gsa_config_apparmor == true
   tags:
     - id_1.6.2.1
 
@@ -13,6 +13,6 @@
   register: aaenforce_rc
   failed_when: aaenforce_rc.rc == 1
   changed_when: False
-  when: ubu14gsa_config_apparmor == "true"
+  when: ubu14gsa_config_apparmor == true
   tags:
     - id_1.6.2.2
