@@ -52,10 +52,13 @@ ubu14gsa_ssh_required: false
 # RedHat Satellite Subscription items
 ubu14gsa_rhnsd_required: false
 
-# 1.4.2 Bootloader password
+#Bootloader password
 
 ubu14gsa_bootloader_password: random
 ubu14gsa_set_boot_pass: false
+
+# Set this flag to use AppArmor. It is useful to disable it when the system does not support the kernel module.
+use_apparmor: True
 
 # System network parameters (host only OR host and router)
 ubu14gsa_is_router: false
@@ -120,6 +123,7 @@ ubu14gsa_logging: rsyslog
 # Warning Banner Content (issue, issue.net, motd)
 ubu14gsa_warning_banner: |
     Authorized uses only. All activity may be monitored and reported.
+# End Banner
 
 # CIS 5.4.1.4 says that users who are inactive for over 30 days must have their
 # accounts disabled. This could cause issues in some environments.
@@ -127,5 +131,3 @@ ubu14gsa_warning_banner: |
 #   yes: disable accounts inactive > 30 days per GSA requirements
 #   no: don't adjust inactive account settings
 lock_inactive: no
-
-# End Banner

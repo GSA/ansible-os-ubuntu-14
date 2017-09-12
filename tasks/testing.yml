@@ -1,8 +1,9 @@
-- name: "1.6.1.4 | Ensure no unconfied daemons exist"
-  shell: ps -eZ | egrep "initrc" | egrep -vw "tr|ps|egrep|bash|awk" | tr ':' ' ' | awk '{print $NF }'
-  register: result1_6_1_4
-  changed_when: "result1_6_1_4.stdout"
-  failed_when: "result1_6_1_4.stdout"
-  ignore_errors: yes
+- name: "1.6.2.1 | Ensure AppArmor is not disabled in bootloader configuration"
+  lineinfile:
+      dest: '/etc/default/grub'
+      regexp: '^GRUB_CMDLINE_LINUX=""'
+      line: 'GRUB_CMDLINE_LINUX=apparmor="1 security=apparmor"'
+      state: present
+      when: use_apparmor == true
   tags:
-    - id_6.2.8
+    - id_1.6.2.1
