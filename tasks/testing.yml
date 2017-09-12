@@ -1,30 +1,8 @@
-  - name: 13.6.1 Ensure root PATH Integrity (empty value) (Scored)
-    shell: 'echo $PATH | grep ::'
-    register: path_colon
-    changed_when: False
-    check_mode: no
-    failed_when: path_colon.rc == 0
-    tags:
-      - section13
-      - section13.6
-
-  - name: 13.6.2 Ensure root PATH Integrity (colon end) (Scored)
-    shell: 'echo $PATH | grep :$'
-    register: path_colon_end
-    changed_when: False
-    check_mode: no
-    failed_when: path_colon_end.rc == 0
-    tags:
-      - section13
-      - section13.6
-
-  - name: 13.6.3 Ensure root PATH Integrity (dot in path) (Scored)
-    shell: "/bin/bash --login -c 'env | grep ^PATH=' | sed -e 's/PATH=//' -e 's/::/:/' -e 's/:$//' -e 's/:/\\n/g'"
-    become: yes
-    register: dot_in_path
-    changed_when: False
-    check_mode: no
-    failed_when: '"." in dot_in_path.stdout_lines'
-    tags:
-      - section13
-      - section13.6
+- name: "1.6.1.4 | Ensure no unconfied daemons exist"
+  shell: ps -eZ | egrep "initrc" | egrep -vw "tr|ps|egrep|bash|awk" | tr ':' ' ' | awk '{print $NF }'
+  register: result1_6_1_4
+  changed_when: "result1_6_1_4.stdout"
+  failed_when: "result1_6_1_4.stdout"
+  ignore_errors: yes
+  tags:
+    - id_6.2.8

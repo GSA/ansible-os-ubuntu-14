@@ -1,72 +1,72 @@
 ---
-# defaults file for RHEL7-CIS
-rhel7gsa_skip_for_travis: false
+# defaults file for ubu14-CIS
+ubu14gsa_skip_for_travis: false
 
-rhel7gsa_notauto: false
-rhel7gsa_section1: true
-rhel7gsa_section2: true
-rhel7gsa_section3: true
-rhel7gsa_section4: true
-rhel7gsa_section5: true
-rhel7gsa_section6: true
+ubu14gsa_notauto: false
+ubu14gsa_section1: true
+ubu14gsa_section2: true
+ubu14gsa_section3: true
+ubu14gsa_section4: true
+ubu14gsa_section5: true
+ubu14gsa_section6: true
 
-rhel7gsa_selinux_disable: false
+ubu14gsa_selinux_disable: false
 
 # Service configuration booleans set true to keep service
-rhel7gsa_avahi_server: false
-rhel7gsa_cups_server: false
-rhel7gsa_dhcp_server: false
-rhel7gsa_ldap_server: false
-rhel7gsa_telnet_server: false
-rhel7gsa_nfs_server: false
-rhel7gsa_rpc_server: false
-rhel7gsa_ntalk_server: false
-rhel7gsa_rsyncd_server: false
-rhel7gsa_tftp_server: false
-rhel7gsa_rsh_server: false
-rhel7gsa_nis_server: false
-rhel7gsa_snmp_server: false
-rhel7gsa_squid_server: false
-rhel7gsa_smb_server: false
-rhel7gsa_dovecot_server: false
-rhel7gsa_httpd_server: false
-rhel7gsa_vsftpd_server: false
-rhel7gsa_named_server: false
-rhel7gsa_nfs_rpc_server: false
-rhel7gsa_is_mail_server: false
-rhel7gsa_bind: false
-rhel7gsa_vsftpd: false
-rhel7gsa_httpd: false
-rhel7gsa_dovecot: false
-rhel7gsa_samba: false
-rhel7gsa_squid: false
-rhel7gsa_net_snmp: false
-rhel7gsa_allow_autofs: false
+ubu14gsa_avahi_server: false
+ubu14gsa_cups_server: false
+ubu14gsa_dhcp_server: false
+ubu14gsa_ldap_server: false
+ubu14gsa_telnet_server: false
+ubu14gsa_nfs_server: false
+ubu14gsa_rpc_server: false
+ubu14gsa_ntalk_server: false
+ubu14gsa_rsyncd_server: false
+ubu14gsa_tftp_server: false
+ubu14gsa_rsh_server: false
+ubu14gsa_nis_server: false
+ubu14gsa_snmp_server: false
+ubu14gsa_squid_server: false
+ubu14gsa_smb_server: false
+ubu14gsa_dovecot_server: false
+ubu14gsa_httpd_server: false
+ubu14gsa_vsftpd_server: false
+ubu14gsa_named_server: false
+ubu14gsa_nfs_rpc_server: false
+ubu14gsa_is_mail_server: false
+ubu14gsa_bind: false
+ubu14gsa_vsftpd: false
+ubu14gsa_httpd: false
+ubu14gsa_dovecot: false
+ubu14gsa_samba: false
+ubu14gsa_squid: false
+ubu14gsa_net_snmp: false
+ubu14gsa_allow_autofs: false
 
 # xinetd required
-rhel7gsa_xinetd_required: false
+ubu14gsa_xinetd_required: false
 
 # Configure squashfs
-rhel7gsa_ssh_required: false
+ubu14gsa_ssh_required: false
 
 # RedHat Satellite Subscription items
-rhel7gsa_rhnsd_required: false
+ubu14gsa_rhnsd_required: false
 
 # 1.4.2 Bootloader password
 
-rhel7gsa_bootloader_password: random
-rhel7gsa_set_boot_pass: false
+ubu14gsa_bootloader_password: random
+ubu14gsa_set_boot_pass: false
 
 # System network parameters (host only OR host and router)
-rhel7gsa_is_router: false
+ubu14gsa_is_router: false
 
 # IPv6 required
-rhel7gsa_ipv6_required: true
+ubu14gsa_ipv6_required: true
 
 # AIDE
-rhel7gsa_config_aide: true
+ubu14gsa_config_aide: true
 # AIDE cron settings
-rhel7gsa_aide_cron:
+ubu14gsa_aide_cron:
   cron_user: root
   cron_file: /etc/crontab
   aide_job: '/usr/sbin/aide --check'
@@ -77,48 +77,48 @@ rhel7gsa_aide_cron:
   aide_weekday: '*'
 
 # SELinux policy
-rhel7gsa_selinux_pol: targeted
+ubu14gsa_selinux_pol: targeted
 
 # Set to 'true' if X Windows is needed in your environment
-rhel7gsa_xwindows_required: no
+ubu14gsa_xwindows_required: no
 
-rhel7gsa_openldap_clients_required: false
-rhel7gsa_telnet_required: false
-rhel7gsa_talk_required: false
-rhel7gsa_rsh_required: false
-rhel7gsa_ypbind_required: false
+ubu14gsa_openldap_clients_required: false
+ubu14gsa_telnet_required: false
+ubu14gsa_talk_required: false
+ubu14gsa_rsh_required: false
+ubu14gsa_ypbind_required: false
 
 # Time Synchronization
-#rhel7gsa_time_synchronization: chrony
-#rhel7gsa_time_Synchronization: ntp
+#ubu14gsa_time_synchronization: chrony
+#ubu14gsa_time_Synchronization: ntp
 
-rhel7gsa_time_synchronization_servers:
+ubu14gsa_time_synchronization_servers:
     - 0.pool.ntp.org
     - 1.pool.ntp.org
     - 2.pool.ntp.org
     - 3.pool.ntp.org
 
 # 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
-rhel7gsa_host_allow:
+ubu14gsa_host_allow:
     - "10.0.0.0/255.0.0.0"
     - "172.16.0.0/255.240.0.0"
     - "192.168.0.0/255.255.0.0"
 
 # Wireless configuration
-rhel7gsa_wireless: false
+ubu14gsa_wireless: false
 
-#rhel7gsa_firewall: firewalld
-#rhel7gsa_firewall: iptables_plus !!!NOTE!!! This could break your network connections. Test before implementing.
-rhel7gsa_firewall: iptables
-rhel7gsa_firewall_status: true
+#ubu14gsa_firewall: firewalld
+#ubu14gsa_firewall: iptables_plus !!!NOTE!!! This could break your network connections. Test before implementing.
+ubu14gsa_firewall: iptables
+ubu14gsa_firewall_status: true
 
 # Logging configuration
-rhel7gsa_config_logging: true
-rhel7gsa_logging: rsyslog
-#rhel7gsa_logging: rsyslog-ng
+ubu14gsa_config_logging: true
+ubu14gsa_logging: rsyslog
+#ubu14gsa_logging: rsyslog-ng
 
 # Warning Banner Content (issue, issue.net, motd)
-rhel7gsa_warning_banner: |
+ubu14gsa_warning_banner: |
     Authorized uses only. All activity may be monitored and reported.
 
 # CIS 5.4.1.4 says that users who are inactive for over 30 days must have their
