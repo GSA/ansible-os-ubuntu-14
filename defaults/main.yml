@@ -58,7 +58,7 @@ ubu14gsa_bootloader_password: random
 ubu14gsa_set_boot_pass: false
 
 # Set this flag to use AppArmor. It is useful to disable it when the system does not support the kernel module.
-use_apparmor: True
+ubu14gsa_config_apparmor: true
 
 # System network parameters (host only OR host and router)
 ubu14gsa_is_router: false
