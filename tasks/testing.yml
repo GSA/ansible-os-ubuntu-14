@@ -92,18 +92,5 @@
       enabled: no
   when: ubu14gsa_httpd_server == false and httpd_service_status.stdout == "loaded"
   tags:
-      - id_2.2.10- name: "1.6.3 | Ensure SELinux or AppArmor are installed"
-  apt:
-      name: apparmor
-      state: present
-  when: ubu14gsa_config_apparmor == true
-  tags:
-      - id_1.6.3_apparmor
-
-- name: "1.6.3 | Ensure SELinux or AppArmor are installed"
-  apt:
-      name: selinux
-      state: present
-  when: ubu14gsa_config_selinux == true
-  tags:
-      - id_1.6.3_selinux
+      - id_2.2.10
+      
