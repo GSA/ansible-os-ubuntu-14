@@ -46,7 +46,7 @@
   check_mode: no
 
 - name: "PRELIM | Check for cups service"
-  shell: "systemctl show cups | grep LoadState | cut -d = -f 2"
+  shell: "initctl show-config cups | grep start | cut -d = -f 2"
   register: cups_service_status
   changed_when: no
   check_mode: no
