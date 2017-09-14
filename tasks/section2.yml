@@ -53,134 +53,91 @@
   tags:
       - id_2.2.2
 
-- name: 2.2.3 | Ensure Avahi Server is not enabled
-  lineinfile: >
-      line='#start on (filesystem'
-      state=present
-      regexp='start on \(filesystem'
-      dest=/etc/init/avahi-daemon.conf
-  when: avahi_stat.stat.exists == True
-  tags:
-    - id_2.2.3
-
-- name: 2.2.4 | Ensure print server is not enabled
-  lineinfile: >
-      line='#start on (filesystem'
-      state=present
-      regexp='start on \(filesystem'
-      dest=/etc/init/cups.conf
-  when: cups_stat.stat.exists == True
-  tags:
-    - id_2.2.4
-
-- name: 2.2.5 | Ensure DHCP Server is not enabled
-  lineinfile: >
-      line='#start on runlevel [2345]'
-      state=present
-      regexp='start on runlevel'
-      dest=/etc/init/isc-dhcp-server.conf
-  when: dhcp_stat.stat.exists == True
-  tags:
-    - id_2.2.5
-
-- name: 2.2.6 | Ensure LDAP is not enabled
-  apt: name=slapd purge=yes state=absent
-  tags:
-    - id_2.2.6
-
-- name: 2.7.2 | Ensure NFS is not enabled (rc.d)
+- name: 2.2.3-2.2.14 | Ensure DNS,FTP,HTTP,IMAP,POP,Samba,Proxy,SNMP Servers are not enabled (Not Scored)
   service: >
-      name=nfs-kernel-server
+      name={{ item }}
       enabled=no
-  when: nfs_present is defined and nfs_present.rc == 0
-  register: nfs_service_result
-  failed_when: "nfs_service_result|failed and 'service not found' not in nfs_service_result.msg"
+  with_items:
+    - avahi-daemon
+    - cups
+    - isc-dhcp-server
+    - nfs-kernel-server
+    - rpcbind
+    - slapd
+    - bind9
+    - vsftpd
+    - apache2
+    - dovecot
+    - smbd
+    - squid3
+    - snmpd
+  failed_when: False
   tags:
-    - id_2.7.2
+    - id_2.2.8-2.2.14
 
-- name: 2.7.2 | Ensure RPC is not enabled (rc.d) 
-  service: >
-      name=rpcbind
-      enabled=no
-  when: nfs_present is defined and nfs_present.rc == 0
-  register: rpc_service_result
-  failed_when: "rpc_service_result|failed and 'service not found' not in rpc_service_result.msg"
+- name: 2.2.15 Configure Mail Transfer Agent for Local-Only Mode
+  stat: path=/etc/postfix/main.cf
+  register: postfix_main_cf
   tags:
-    - section2
-    - section2.7
-    - section2.7.2
+    - id_2.2.15
 
-- name: "2.2.8 | Ensure DNS Server is not enabled"
-  service:
-      name: named
-      state: stopped
-      enabled: no
-  when: ubu14gsa_named_server == false and named_service_status.stdout == "loaded"
+- name: 2.2.15 | Configure Mail Transfer Agent for Local-Only Mode (Scored)
+  lineinfile: >
+      dest=/etc/postfix/main.cf
+      regexp='^inet_interfaces ='
+      line='inet_interfaces = localhost'
+      state=present
+  when: postfix_main_cf.stat.exists == True
   tags:
-      - id_2.2.8
+    - id_2.2.15
 
-- name: "2.2.9 | Ensure FTP Server is not enabled"
-  service:
-      name: vsftpd
-      state: stopped
-      enabled: no
-  when: ubu14gsa_vsftpd_server == false and vsftpd_service_status.stdout == "loaded"
+- name: 2.2.15 | Configure Mail Transfer Agent for Local-Only Mode (Scored)
+  lineinfile: >
+      dest=/etc/postfix/main.cf
+      regexp='^inet_protocols ='
+      line='inet_protocols = ipv4'
+      state=present
+  when: postfix_main_cf.stat.exists == True and ubu14gsa_ipv6_required == true
   tags:
-      - id_2.2.9
+    - id_2.2.15
 
-- name: "2.2.10 | Ensure HTTP server is not enabled"
-  service:
-      name: httpd
-      state: stopped
-      enabled: no
-  when: ubu14gsa_httpd_server == false and httpd_service_status.stdout == "loaded"
+- name: 2.2.16 | Ensure rsync service is not enabled
+  stat: path=/etc/default/rsync
+  register: default_rsync
   tags:
-      - id_2.2.10
+    - id_2.2.16
 
-- name: "2.2.11 | Ensure IMAP and POP3 server is not enabled"
-  service:
-      name: dovecot
-      state: stopped
-      enabled: no
-  when: ubu14gsa_dovecot_server == false and dovecot_service_status.stdout == "loaded"
+- name: 2.2.16 | Ensure rsync service is not enabled
+  lineinfile: >
+      dest='/etc/default/rsync'
+      regexp='^RSYNC_ENABLE'
+      line='RSYNC_ENABLE=false'
+  when: default_rsync.stat.exists == True
   tags:
-      - id_2.2.11
-
-- name: "2.2.12 | Ensure Samba is not enabled"
-  service:
-      name: smbd
-      state: stopped
-      enabled: no
-  when: ubu14gsa_smb_server == false and smb_service_status.stdout == "loaded"
-  tags:
-      - id_2.2.12
-
-- name: "2.2.13 | Ensure HTTP Proxy Server is not enabled"
-  service:
-      name: squid3
-      state: stopped
-      enabled: no
-  when: ubu14gsa_squid_server == false and squid_service_status.stdout == "loaded"
-  tags:
-      - id_2.2.13
-
-- name: "2.2.14 | Ensure SNMP Server is not enabled"
-  service:
-      name: snmpd
-      state: stopped
-      enabled: no
-  when: ubu14gsa_snmp_server == false and snmpd_service_status.stdout == "loaded"
-  tags:
-      - id_2.2.14
+    - id_2.2.16
 
 - name: "2.2.17 | Ensure NIS Server is not enabled"
   service:
       name: ypserv
       state: stopped
       enabled: no
-  when: ubu14gsa_nis_server == false and ypserv_service_status.stdout == "loaded"
+  failed_when: False
   tags:
       - id_2.2.17
+
+- name: 2.2.3-2.2.14 | Ensure DNS,FTP,HTTP,IMAP,POP,Samba,Proxy,SNMP Servers are not enabled (Not Scored)
+  apt: >
+      name={{ item }}
+      state=absent
+  with_items:
+    - nis
+    - rsh-client
+    - rsh-redone-client
+    - talk
+    - telnet
+    - ldap-utils
+  tags:
+    - id_2.3.1-2.3.5
 
 - name: "2.2.17 | Ensure rsh server is not enabled | rsh"
   service:
@@ -190,71 +147,6 @@
   when: ubu14gsa_rsh_server == false and rsh_service_status.stdout == "loaded"
   tags:
       - id_2.2.17
-
-- name: "2.2.17 | Ensure rsh server is not enabled | rlogin"
-  service:
-      name: rlogin.socket
-      state: stopped
-      enabled: no
-  when: ubu14gsa_rsh_server == false and rlogin_service_status.stdout == "loaded"
-  tags:
-      - id_2.2.17
-
-- name: "2.2.17 | Ensure rsh server is not enabled | rexec"
-  service:
-      name: rexec.socket
-      state: stopped
-      enabled: no
-  when: ubu14gsa_rsh_server == false and rexec_service_status.stdout == "loaded"
-  tags:
-      - id_2.2.17
-
-- name: "2.2.18 | Ensure talk server is not enabled"
-  service:
-      name: ntalk
-      state: stopped
-      enabled: no
-  when: ubu14gsa_ntalk_server == false and ntalk_service_status.stdout == "loaded"
-  tags:
-      - id_2.2.18
-
-- name: "2.2.19 | Ensure telnet server is not enabled"
-  service:
-      name: telnet
-      state: stopped
-      enabled: no
-  when: ubu14gsa_telnet_server == false and telnet_service_status.stdout == "loaded"
-  tags:
-      - id_2.2.19
-
-- name: "2.2.20 | Ensure tftp server is not enabled"
-  service:
-      name: tftp
-      state: stopped
-      enabled: no
-  when: ubu14gsa_tftp_server == false and tftp_service_status.stdout == "loaded"
-  tags:
-      - insecure_services
-      - tftp
-      - id_2.2.20
-
-- name: "2.2.21 | Ensure rsync service is not enabled "
-  service:
-      name: rsyncd
-      state: stopped
-      enabled: no
-  when: ubu14gsa_rsyncd_server == false and rsyncd_service_status.stdout == "loaded"
-  tags:
-      - id_2.2.21
-
-- name: "2.2.21 | Ensure talk server is not enabled"
-  service:
-      name: ntalk
-      state: stopped
-      enabled: no
-  when: ubu14gsa_ntalk_server == false and ntalk_service_status.stdout == "loaded"
-  tags:
-      - id_2.2.21
 
 - name: "2.3.1 | Ensure NIS Client is not installed"
   apt:
