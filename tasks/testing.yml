@@ -3,6 +3,7 @@
       name={{ item }}
       enabled=no
   with_items:
+    - avahi-daemon
     - cups
     - bind9
     - vsftpd
