@@ -1,10 +1,14 @@
-- name: 2.2.8-2.2.14 | Ensure DNS,FTP,HTTP,IMAP,POP,Samba,Proxy,SNMP Servers are not enabled (Not Scored)
+- name: 2.2.3-2.2.14 | Ensure DNS,FTP,HTTP,IMAP,POP,Samba,Proxy,SNMP Servers are not enabled (Not Scored)
   service: >
       name={{ item }}
       enabled=no
   with_items:
     - avahi-daemon
     - cups
+    - isc-dhcp-server
+    - nfs-kernel-server
+    - rpcbind
+    - slapd
     - bind9
     - vsftpd
     - apache2
