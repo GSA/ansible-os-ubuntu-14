@@ -2,7 +2,7 @@
   stat: path=/etc/inetd.conf
   register: inetd_path
   tags:
-  - rule_2.1.1-2.1.10
+  - id_2.1.1-2.1.10
 
 - name: "2.1.1-2.1.10 | Ensure rsh, rlogin, rexec, talk, telnet, chargen, daytime, echo, discard, time is not enabled"
   lineinfile: >
@@ -28,7 +28,7 @@
       - xinetd
   when: inetd_path.stat.exists == True
   tags:
-  - rule_2.1.1-2.1.10
+  - id_2.1.1-2.1.10
 
 - name: "2.2.1.1 | Ensure time synchronization is in use"
   apt:
@@ -36,7 +36,7 @@
       state: present
   when: ubu14gsa_time_Synchronization == ntp
   tags:
-      - rule_2.1.1.1
+      - id_2.1.1.1
 
 - name: "2.2.1.1 | Ensure time synchronization is in use"
   apt:
@@ -44,7 +44,7 @@
       state: present
   when: ubu14gsa_time_Synchronization == chrony
   tags:
-      - rule_2.1.1.1
+      - id_2.1.1.1
 
 - name: "2.2.2 | Ensure X Window System in not installed"
   apt:
@@ -53,74 +53,62 @@
   tags:
       - id_2.2.2
 
-- name: "2.2.3 | Ensure Avahi Server is not enabled"
-  service:
-      name: avahi-daemon
-      state: stopped
-      enabled: no
-  when: ubu14gsa_avahi_server == false and avahi_service_status.stdout == "loaded"
+- name: 2.2.3 | Ensure Avahi Server is not enabled
+  lineinfile: >
+      line='#start on (filesystem'
+      state=present
+      regexp='start on \(filesystem'
+      dest=/etc/init/avahi-daemon.conf
+  when: avahi_stat.stat.exists == True
   tags:
-      - avahi
-      - services
-      - id_2.2.3
+    - id_2.2.3
 
-- name: "2.2.4 | Ensure CUPS is not enabled"
-  service:
-      name: cups
-      state: stopped
-      enabled: no
-  when: ubu14gsa_cups_server == false and cups_service_status.stdout == "loaded"
+- name: 2.2.4 | Ensure print server is not enabled
+  lineinfile: >
+      line='#start on (filesystem'
+      state=present
+      regexp='start on \(filesystem'
+      dest=/etc/init/cups.conf
+  when: cups_stat.stat.exists == True
   tags:
-      - cups
-      - services
-      - id_2.2.4
+    - id_2.2.4
 
-- name: "2.2.5 | Ensure DHCP Server is not enabled"
-  service:
-      name: dhcpd
-      state: stopped
-      enabled: no
-  when: ubu14gsa_dhcp_server == false and dhcpd_service_status.stdout == "loaded"
+- name: 2.2.5 | Ensure DHCP Server is not enabled
+  lineinfile: >
+      line='#start on runlevel [2345]'
+      state=present
+      regexp='start on runlevel'
+      dest=/etc/init/isc-dhcp-server.conf
+  when: dhcp_stat.stat.exists == True
   tags:
-      - dhcp
-      - services
+    - id_2.2.5
 
-      - id_2.2.5
-
-- name: "2.2.6 | Ensure LDAP server is not enabled"
-  service:
-      name: slapd
-      state: stopped
-      enabled: no
-  when: ubu14gsa_ldap_server == false and slapd_service_status.stdout == "loaded"
+- name: 2.2.6 | Ensure LDAP is not enabled
+  apt: name=slapd purge=yes state=absent
   tags:
-      - ldap
-      - services
-      - id_2.2.6
+    - id_2.2.6
 
-- name: "2.2.7 | Ensure NFS and RPC are not enabled"
-  service:
-      name: nfs
-      state: stopped
-      enabled: no
-  when: ubu14gsa_nfs_rpc_server == false and nfs_service_status.stdout == "loaded"
+- name: 2.7.2 | Ensure NFS is not enabled (rc.d)
+  service: >
+      name=nfs-kernel-server
+      enabled=no
+  when: nfs_present is defined and nfs_present.rc == 0
+  register: nfs_service_result
+  failed_when: "nfs_service_result|failed and 'service not found' not in nfs_service_result.msg"
   tags:
-      - nfs
-      - rpc
-      - services
-      - id_2.2.7
+    - id_2.7.2
 
-- name: "2.2.7 | Ensure NFS and RPC are not enabled"
-  service:
-      name: rpcbind
-      state: stopped
-      enabled: no
-  when: ubu14gsa_nfs_rpc_server == false and rpcbind_service_status.stdout == "loaded"
+- name: 2.7.2 | Ensure RPC is not enabled (rc.d) 
+  service: >
+      name=rpcbind
+      enabled=no
+  when: nfs_present is defined and nfs_present.rc == 0
+  register: rpc_service_result
+  failed_when: "rpc_service_result|failed and 'service not found' not in rpc_service_result.msg"
   tags:
-      - nfs
-      - rpc
-      - services
-      - id_2.2.7
+    - section2
+    - section2.7
+    - section2.7.2
 
 - name: "2.2.8 | Ensure DNS Server is not enabled"
   service:
