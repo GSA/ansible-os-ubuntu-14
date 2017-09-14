@@ -139,14 +139,6 @@
   tags:
     - id_2.3.1-2.3.5
 
-- name: "2.2.17 | Ensure rsh server is not enabled | rsh"
-  service:
-      name: rsh.socket
-      state: stopped
-      enabled: no
-  when: ubu14gsa_rsh_server == false and rsh_service_status.stdout == "loaded"
-  tags:
-      - id_2.2.17
 
 - name: "2.3.1 | Ensure NIS Client is not installed"
   apt:
