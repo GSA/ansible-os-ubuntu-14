@@ -34,7 +34,7 @@
   apt:
       name: ntp
       state: present
-  when: ubu14gsa_time_Synchronization == ntp
+  when: ubu14gsa_time_usentp == True
   tags:
       - id_2.1.1.1
 
@@ -42,7 +42,7 @@
   apt:
       name: chrony
       state: present
-  when: ubu14gsa_time_Synchronization == chrony
+  when: ubu14gsa_time_usechrony == True
   tags:
       - id_2.1.1.1
 
