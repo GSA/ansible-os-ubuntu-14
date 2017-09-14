@@ -90,8 +90,8 @@ ubu14gsa_rsh_required: false
 ubu14gsa_ypbind_required: false
 
 # Time Synchronization
-#ubu14gsa_time_synchronization: chrony
-#ubu14gsa_time_Synchronization: ntp
+ubu14gsa_time_usentp: false
+ubu14gsa_time_usechrony: false
 
 ubu14gsa_time_synchronization_servers:
     - 0.pool.ntp.org
