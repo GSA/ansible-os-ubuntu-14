@@ -231,14 +231,14 @@
   tags:
       - id_5.2.14
 
-- name: "SCORED | 5.2.16 | Ensure SSH warning banner is configured"
+- name: "SCORED | 5.2.15 | Ensure SSH warning banner is configured"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^Banner'
       line: 'Banner /etc/issue.net'
   tags:
-      - id_5.2.16
+      - id_5.2.15
 
 - name: "SCORED | 5.3.1 | Ensure password creation requirements are configured"
   apt:
@@ -252,11 +252,7 @@
       regexp: '^{{ item.key }}'
       line: '{{ item.key }} = {{ item.value }}'
   with_items:
-      - { key: 'minlen',  value: '8' }
-      - { key: 'dcredit', value: '-1' }
-      - { key: 'ucredit', value: '-1' }
-      - { key: 'ocredit', value: '-1' }
-      - { key: 'lcredit', value: '-1' }
+      - { key: 'minlen',  value: '16' }
   tags:
       - id_5.3.1
 
@@ -313,6 +309,20 @@
       line: 'INACTIVE=30'
   tags:
     -  id_5.4.1.4
+
+- name: 5.4.2 | Disable System Accounts
+  shell: awk -F':' '($1!="root" && $1!="sync" && $1!="shutdown" &&$1!="halt" && $3<500 && $7!="/usr/sbin/nologin" && $7!="/bin/false") {print $1}' /etc/passwd
+  register: awk_etc_passwd
+  changed_when: False
+  always_run: True
+  tags:
+    - id_5.4.2
+
+- name: 5.4.2 | Disable System Accounts
+  command: /usr/sbin/usermod -s /usr/sbin/nologin {{ item }}
+  with_items: "{{awk_etc_passwd.stdout_lines}}"
+  tags:
+    - id_5.4.2
 
 - name: "SCORED | 5.4.3 | Ensure default group for the root account is GID 0"
   command: usermod -g 0 root
