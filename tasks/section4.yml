@@ -4,7 +4,7 @@
       regexp: "^max_log_file"
       line: "max_log_file = 10"
       state: present
-  when: ubu14gsa_auditd_config  == true
+  when: ubu14gsa_auditd_config == true
   tags:
       - id_4.1.1.1
 
