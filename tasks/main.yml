@@ -9,10 +9,10 @@
 #  - include: section2.yml
 #    tags: section2
 
-  - include: section3.yml
+#  - include: section3.yml
 #    tags: section3
 
-#  - include: section4.yml
+  - include: section4.yml
 #    tags: section4
 
 #  - include: section5.yml
