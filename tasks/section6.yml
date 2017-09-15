@@ -145,15 +145,6 @@
   tags:
     - id_6.2.6
 
-- name: 6.2.7 | Check That Users Are Assigned Valid Home Directories
-  stat: path='{{ item }}'
-  with_items: "{{home_users.stdout_lines}}"
-  register: rstat
-  failed_when: rstat is defined and rstat.stat.isdir == False
-  always_run: True
-  tags:
-    - id_6.2.7
-
 - name: "6.2.8 | Check Permissions on User Home Directories"
   shell: |
     for dir in `/bin/cat /etc/passwd | /bin/egrep -v '(root|halt|sync|shutdown)' |\
