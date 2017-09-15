@@ -294,3 +294,11 @@
 - name: "Saving iptables rules"
   command: /sbin/service iptables save
   when: rhel7gsa_firewall == "iptables_plus" and rhel7gsa_firewall_status == true
+
+- name: 3.7 | Deactivate Wireless Interfaces
+  shell: 'lspci -k | grep -i wifi'
+  changed_when: False
+  register: lspci_wifi
+  failed_when: lspci_wifi.rc == 0
+  tags:
+    - id_3.7
