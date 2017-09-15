@@ -68,7 +68,7 @@ ubu14gsa_is_router: false
 ubu14gsa_ipv6_required: true
 
 # AIDE
-ubu14gsa_config_aide: true
+ubu14gsa_config_aide: false
 
 # AIDE cron settings
 ubu14gsa_aide_cron:
@@ -108,6 +108,9 @@ ubu14gsa_host_allow:
 # Wireless configuration
 ubu14gsa_wireless: false
 
+# Additional audit settings
+ubu14gsa_auditd_config : false
+
 #ubu14gsa_firewall: firewalld
 #ubu14gsa_firewall: iptables_plus !!!NOTE!!! This could break your network connections. Test before implementing.
 ubu14gsa_firewall: iptables
@@ -117,6 +120,7 @@ ubu14gsa_firewall_status: true
 ubu14gsa_config_logging: true
 ubu14gsa_logging: rsyslog
 #ubu14gsa_logging: rsyslog-ng
+
 
 # Warning Banner Content (issue, issue.net, motd)
 ubu14gsa_warning_banner: |
