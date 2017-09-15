@@ -83,7 +83,7 @@
   service:
       name: autofs
       enabled: no
-  when: autofs_service_status.stdout == "loaded"
+  failed_when: False
   tags:
       - id_1.1.21
 
