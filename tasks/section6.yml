@@ -78,23 +78,26 @@
       - id_6.2.1
 
 - name: "6.2.2 | Ensure no legacy '+' entries exist in /etc/passwd"
-  command: sed -i '/^+/ d' /etc/passwd
+  command: grep '^+:' /etc/passwd
+  register: plus_pass
+  failed_when: plus_pass.rc == 0
+  changed_when: plus_pass.rc == 0
   tags:
-
-
-
       - id_6.2.2
 
 - name: "6.2.3 | Ensure no legacy '+' entries exist in /etc/shadow"
-  command: sed -i '/^+/ d' /etc/shadow
+  command: grep '^+:' /etc/shadow
+  register: plus_shadow
+  failed_when: plus_shadow.rc == 0
+  changed_when: plus_shadow.rc == 0
   tags:
-
-
-
       - id_6.2.3
 
 - name: "6.2.4 | Ensure no legacy '+' entries exist in /etc/group"
-  command: sed -i '/^+/ d' /etc/group
+  command: grep '^+:' /etc/group
+  register: plus_group
+  failed_when: plus_group.rc == 0
+  changed_when: plus_group.rc == 0
   tags:
 
 
