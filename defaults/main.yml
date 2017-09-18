@@ -109,7 +109,7 @@ ubu14gsa_host_allow:
 ubu14gsa_wireless: false
 
 # Additional audit settings
-ubu14gsa_auditd_config : false
+ubu14gsa_auditd_config : true
 
 #ubu14gsa_firewall: firewalld
 #ubu14gsa_firewall: iptables_plus !!!NOTE!!! This could break your network connections. Test before implementing.
