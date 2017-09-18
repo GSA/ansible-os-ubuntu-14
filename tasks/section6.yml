@@ -99,9 +99,6 @@
   failed_when: plus_group.rc == 0
   changed_when: plus_group.rc == 0
   tags:
-
-
-
       - id_6.2.4
 
 - name: "PRELIM | Gather UID 0 accounts other than root"
