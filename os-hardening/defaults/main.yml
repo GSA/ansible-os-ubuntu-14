@@ -64,7 +64,7 @@ ubu14gsa_bootloader_password: random
 ubu14gsa_set_boot_pass: false
 
 # 1.6.2 Configure AppArmor
- ubu14gsa_config_apparmor: true
+ubu14gsa_config_apparmor: true
 
 # 1.6.3 Configure Selinux
 ubu14gsa_config_selinux: fasle
