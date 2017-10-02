@@ -1,22 +1,24 @@
 ---
 
-  - include: check_requirements.yml
+  - include: prelim.yml
+#    tags: prelim
 
-  - include: section_01.yml
-    tags: section01
+  - include: section1.yml
+#    tags: section1
 
-  - include: section_02.yml
-    tags: section02
+  - include: section2.yml
+#    tags: section2
 
-  - include: section_03.yml
-    tags: section03
+  - include: section3.yml
+#    tags: section3
 
-  - include: section_04.yml
-    tags: section04
+  - include: section4.yml
+#    tags: section4
 
-  - include: section_05.yml
-    tags: section05
+  - include: section5.yml
+#    tags: section5
 
+<<<<<<< HEAD
   - include: section_07.yml
     tags: section07
 
@@ -40,3 +42,9 @@
 
   - include: section_13.yml
     tags: section13
+=======
+  - include: section6.yml
+#    tags: section6
+
+#  - include: testing.yml
+>>>>>>> ubuntu_ansible_dev
