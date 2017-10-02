@@ -1,8 +1,5 @@
 ---
-# defaults file for ubu14-CIS
-ubu14gsa_skip_for_travis: false
-
-ubu14gsa_notauto: false
+# defaults file for Ubuntu14
 ubu14gsa_section1: true
 ubu14gsa_section2: true
 ubu14gsa_section3: true
@@ -10,7 +7,7 @@ ubu14gsa_section4: true
 ubu14gsa_section5: true
 ubu14gsa_section6: true
 
-# Service configuration booleans set true to keep service
+# Service configuration booleans set true to keep service/packages
 ubu14gsa_avahi_server: false
 ubu14gsa_cups_server: false
 ubu14gsa_dhcp_server: false
@@ -40,36 +37,17 @@ ubu14gsa_samba: false
 ubu14gsa_squid: false
 ubu14gsa_net_snmp: false
 ubu14gsa_allow_autofs: false
+ubu14gsa_openldap_clients_required: false
+ubu14gsa_telnet_required: false
+ubu14gsa_talk_required: false
+ubu14gsa_rsh_required: false
+ubu14gsa_ypbind_required: false
 
-# xinetd required
-ubu14gsa_xinetd_required: false
-
-# Configure squashfs
-ubu14gsa_ssh_required: false
-
-# RedHat Satellite Subscription items
+#1.2.5 | Disable the rhnsd Daemon
 ubu14gsa_rhnsd_required: false
 
-#Bootloader password
-ubu14gsa_bootloader_password: random
-ubu14gsa_set_boot_pass: false
-
-# Set this flag to use AppArmor. It is useful to disable it when the system does not support the kernel module.
-ubu14gsa_config_apparmor: true
-
-# Set this flag to use SELinux. It is useful to disable it when the system does not support the kernel module.
-ubu14gsa_config_selinux: false
-ubu14gsa_selinux_pol: targeted
-
-# System network parameters (host only OR host and router)
-ubu14gsa_is_router: false
-
-# IPv6 required
-ubu14gsa_ipv6_required: true
-
-# AIDE
+# 1.3.1 Install and configure AIDE. This is disabled by default as OSSEC is widely in use
 ubu14gsa_config_aide: false
-
 # AIDE cron settings
 ubu14gsa_aide_cron:
   cron_user: root
@@ -81,17 +59,21 @@ ubu14gsa_aide_cron:
   aide_month: '*'
   aide_weekday: '*'
 
-# Set to 'true' if X Windows is needed in your environment
-ubu14gsa_xwindows_required: no
-ubu14gsa_openldap_clients_required: false
-ubu14gsa_telnet_required: false
-ubu14gsa_talk_required: false
-ubu14gsa_rsh_required: false
-ubu14gsa_ypbind_required: false
+# 1.4.2 Bootloader password
+ubu14gsa_bootloader_password: random
+ubu14gsa_set_boot_pass: false
 
-# Time Synchronization
-ubu14gsa_time_usentp: false
-ubu14gsa_time_usechrony: false
+# SELinux policy
+# 1.6.1.3 Ensure SELinux policy is configured
+ubu14gsa_selinux_disable: false
+ubu14gsa_selinux_pol: targeted
+
+# 2.1.7 xinetd required
+ubu14gsa_xinetd_required: false
+
+# 2.2.1 Time Synchronization
+#ubu14gsa_time_synchronization: chrony
+#ubu14gsa_time_Synchronization: ntp
 
 ubu14gsa_time_synchronization_servers:
     - 0.pool.ntp.org
@@ -99,37 +81,48 @@ ubu14gsa_time_synchronization_servers:
     - 2.pool.ntp.org
     - 3.pool.ntp.org
 
+# 2.2.2 Set to 'true' if X Windows is needed in your environment
+ubu14gsa_xwindows_required: no
+
+# 3.1.1 and 3.1.2 Configuring IP forwarding
+ubu14gsa_is_router: false
+
+#3.3.1 | Configuring IPv6
+ubu14gsa_ipv6_required: true
+
 # 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
 ubu14gsa_host_allow:
     - "10.0.0.0/255.0.0.0"
     - "172.16.0.0/255.240.0.0"
     - "192.168.0.0/255.255.0.0"
 
-# Wireless configuration
-ubu14gsa_wireless: false
-
-# Additional audit settings
-ubu14gsa_auditd_config : true
-
+# 3.6 Firewall Configurations
 #ubu14gsa_firewall: firewalld
 #ubu14gsa_firewall: iptables_plus !!!NOTE!!! This could break your network connections. Test before implementing.
 ubu14gsa_firewall: iptables
 ubu14gsa_firewall_status: true
 
-# Logging configuration
+# 3.7 Wireless configuration
+ubu14gsa_wireless: false
+
+# 4 Logging and Auditing
+ubu14gsa_auditd_config: true
 ubu14gsa_config_logging: true
 ubu14gsa_logging: rsyslog
 #ubu14gsa_logging: rsyslog-ng
 
+# 5.2.9 Permit empty passwords. This is turned off by defualt due to it breaking a standard EC2 ssh connection access with the default ec2-user account.
+ubu14gsa_ssh_required: false
 
-# Warning Banner Content (issue, issue.net, motd)
-ubu14gsa_warning_banner: |
-    Authorized uses only. All activity may be monitored and reported.
-# End Banner
-
-# CIS 5.4.1.4 says that users who are inactive for over 30 days must have their
+# 5.4.1.4 says that users who are inactive for over 30 days must have their
 # accounts disabled. This could cause issues in some environments.
 # Options:
-#   yes: disable accounts inactive > 30 days per GSA requirements
-#   no: don't adjust inactive account settings
-lock_inactive: no
+#   true: disable accounts inactive > 30 days per GSA requirements
+#   false: don't adjust inactive account settings
+lock_inactive: true
+
+# 5.6 Configure wheel group members who can access the su command.
+# This configures the /etc/group wheel configurations. This is turned off by default". Chnage to "true" to enable and add the desired names
+# to the wheel_group_members.
+ubu14gsa_wheel: false
+wheel_group_members: "root,ec2-user"
