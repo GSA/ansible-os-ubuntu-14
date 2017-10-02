@@ -63,20 +63,20 @@ ubu14gsa_aide_cron:
 ubu14gsa_bootloader_password: random
 ubu14gsa_set_boot_pass: false
 
-# SELinux policy
-# 1.6.1.3 Ensure SELinux policy is configured
-ubu14gsa_selinux_disable: false
-ubu14gsa_selinux_pol: targeted
-
 # 1.6.2 Configure AppArmor
  ubu14gsa_config_apparmor: true
+
+# 1.6.3 Configure Selinux
+ubu14gsa_config_selinux: fasle
+ubu14gsa_selinux_disable: true
+ubu14gsa_selinux_pol: targeted
 
 # 2.1.7 xinetd required
 ubu14gsa_xinetd_required: false
 
 # 2.2.1 Time Synchronization
-#ubu14gsa_time_synchronization: chrony
-#ubu14gsa_time_Synchronization: ntp
+ubu14gsa_time_usentp: false
+ubu14gsa_time_usechrony: True
 
 ubu14gsa_time_synchronization_servers:
     - 0.pool.ntp.org

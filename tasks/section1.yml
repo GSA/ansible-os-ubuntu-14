@@ -105,7 +105,7 @@
   tags:
       - id_1.3.1
 
-- name: "1.3.2 | PATCH | Ensure filesystem integrity is regularly checked"
+- name: "1.3.2 | Ensure filesystem integrity is regularly checked"
   cron:
       name: Run AIDE integrity check weekly
       cron_file: "{{ ubu14gsa_aide_cron['cron_file'] }}"
@@ -154,7 +154,7 @@
       state: present
       reload: yes
       sysctl_set: yes
-      ignoreerrors: yes
+      #ignoreerrors: yes
   tags:
       - id_1.5.1
 
