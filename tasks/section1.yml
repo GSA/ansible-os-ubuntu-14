@@ -122,7 +122,7 @@
 
 - name: "1.4.1 | Ensure permissions on bootloader config are configured"
   stat:
-      path: /etc/grub2.cfg
+      path: /boot/grub/grub.cfg
   register: grub_cfg
   tags:
       - id_1.4.1

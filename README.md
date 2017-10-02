@@ -1,3 +1,5 @@
+
+
 Ubuntu 14 GSA Benchmark
 ====================
 
@@ -18,7 +20,7 @@ You should carefully read through the tasks to make sure these changes will not 
 
 Role Variables
 --------------
-There are many role variables defined in defaults/main.yml. This list shows the most important.
+There are many role variables defined in defaults/main.yml.
 
 By default, many of the variables are turned off. Please review and adjust to meet your organizational requirements.
 
