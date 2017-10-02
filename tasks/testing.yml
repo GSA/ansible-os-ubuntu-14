@@ -1,0 +1,13 @@
+- name: 2.2.3-2.2.14 | Ensure DNS,FTP,HTTP,IMAP,POP,Samba,Proxy,SNMP Servers are not enabled (Not Scored)
+  apt: >
+      name={{ item }}
+      state=absent
+  with_items:
+    - nis
+    - rsh-client
+    - rsh-redone-client
+    - talk
+    - telnet
+    - ldap-utils
+  tags:
+    - id_2.3.1-2.3.5
