@@ -68,6 +68,9 @@ ubu14gsa_set_boot_pass: false
 ubu14gsa_selinux_disable: false
 ubu14gsa_selinux_pol: targeted
 
+# 1.6.2 Configure AppArmor
+ ubu14gsa_config_apparmor: true
+
 # 2.1.7 xinetd required
 ubu14gsa_xinetd_required: false
 
