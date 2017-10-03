@@ -195,7 +195,7 @@
   tags:
       - id_5.2.11
 
-- name: "5.2.12 | Ensure only approved MAC algorithms are used"
+- name: "5.2.11 | Ensure only approved MAC algorithms are used"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
@@ -204,7 +204,7 @@
   tags:
       - id_5.2.12
 
-- name: "5.2.13 | Ensure SSH Idle Timeout Interval is configured"
+- name: "5.2.12 | Ensure SSH Idle Timeout Interval is configured"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
@@ -222,7 +222,7 @@
   tags:
       - id_5.2.13
 
-- name: "5.2.14 | Ensure SSH LoginGraceTime is set to one minute or less"
+- name: "5.2.13 | Ensure SSH LoginGraceTime is set to one minute or less"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config

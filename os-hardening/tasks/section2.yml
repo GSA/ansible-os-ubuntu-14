@@ -48,7 +48,7 @@
 
 - name: "2.2.2 | Ensure X Window System in not installed"
   apt:
-      name: xorg-x11-server-common.x86_64
+      name: xserver-xorg-core
       state: absent
   tags:
       - id_2.2.2
@@ -160,6 +160,7 @@
   apt:
       name: talk
       state: absent
+      purge: yes
   when: ubu14gsa_talk_required == false
   tags:
       - id_2.3.3
