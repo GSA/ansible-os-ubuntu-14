@@ -129,11 +129,11 @@
 
 - name: "1.4.1 | Ensure permissions on bootloader config are configured"
   file:
-      path: "{{ grub_cfg.stat.lnk_source }}"
+      path: /boot/grub/grub.cfg
       owner: root
       group: root
       mode: 0600
-  when: grub_cfg.stat.exists and grub_cfg.stat.islnk
+  when: grub_cfg.stat.exists
   tags:
       - id_1.4.1
 
