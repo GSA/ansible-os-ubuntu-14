@@ -21,7 +21,7 @@
       dest: /etc/group
       owner: root
       group: root
-      mode: 0600
+      mode: 0644
   tags:
       - id_6.1.4
 
@@ -112,9 +112,6 @@
   with_items: "{{ uid_zero_accounts_except_root.stdout_lines }}"
   when: uid_zero_accounts_except_root.rc
   tags:
-
-
-
       - id_6.2.5
 
 - name: 6.2.6 | Ensure root PATH Integrity (empty value)
