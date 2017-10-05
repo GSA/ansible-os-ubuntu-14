@@ -53,7 +53,7 @@
   tags:
       - id_2.2.2
 
-- name: 2.2.3-2.2.14 | Ensure DNS,FTP,HTTP,IMAP,POP,Samba,Proxy,SNMP Servers are not enabled (Not Scored)
+- name: 2.2.3-2.2.14 | Ensure DNS,FTP,HTTP,IMAP,POP,Samba,Proxy,SNMP Servers are not enabled
   service: >
       name={{ item }}
       enabled=no
@@ -125,58 +125,18 @@
   tags:
       - id_2.2.17
 
-- name: 2.2.3-2.2.14 | Ensure DNS,FTP,HTTP,IMAP,POP,Samba,Proxy,SNMP Servers are not enabled (Not Scored)
+- name: 2.3.1-2.3.5 | Ensure NIS, RSH, Talk, Telnet, and Ldap are not installed
   apt: >
       name={{ item }}
       state=absent
+      purge=yes
   with_items:
     - nis
-    - rsh-client
-    - rsh-redone-client
+    - ypbind
+    - rsh
     - talk
     - telnet
     - ldap-utils
+    - openldap-clients
   tags:
     - id_2.3.1-2.3.5
-
-
-- name: "2.3.1 | Ensure NIS Client is not installed"
-  apt:
-      name: ypbind
-      state: absent
-  when: ubu14gsa_ypbind_required == false
-  tags:
-      - id_2.3.1
-
-- name: "2.3.2 | Ensure rsh client is not installed"
-  apt:
-      name: rsh
-      state: absent
-  when: ubu14gsa_rsh_required == false
-  tags:
-      - id_2.3.2
-
-- name: "2.3.3 | Ensure talk client is not installed"
-  apt:
-      name: talk
-      state: absent
-      purge: yes
-  when: ubu14gsa_talk_required == false
-  tags:
-      - id_2.3.3
-
-- name: "2.3.4 | Ensure telnet client is not installed"
-  apt:
-      name: telnet
-      state: absent
-  when: ubu14gsa_telnet_required == false
-  tags:
-      - id_2.3.4
-
-- name: "2.3.5 | Ensure LDAP client is not installed"
-  apt:
-      name: openldap-clients
-      state: absent
-  when: ubu14gsa_openldap_clients_required == false
-  tags:
-      - id_2.3.5
