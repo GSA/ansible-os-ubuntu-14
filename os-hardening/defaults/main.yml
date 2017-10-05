@@ -91,7 +91,7 @@ ubu14gsa_xwindows_required: no
 ubu14gsa_is_router: false
 
 #3.3.1 | Configuring IPv6
-ubu14gsa_ipv6_required: true
+ubu14gsa_ipv6_disable: true
 
 # 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
 ubu14gsa_host_allow:

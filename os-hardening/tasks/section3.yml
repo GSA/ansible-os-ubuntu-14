@@ -135,7 +135,6 @@
   with_items:
       - { name: net.ipv6.conf.all.accept_ra, value: 0 }
       - { name: net.ipv6.conf.default.accept_ra, value: 0 }
-  when: ubu14gsa_ipv6_required == true
   tags:
       - id_3.3.1
 
@@ -149,7 +148,6 @@
   with_items:
       - { name: net.ipv6.conf.all.accept_redirects, value: 0 }
       - { name: net.ipv6.conf.default.accept_redirects, value: 0 }
-  when: ubu14gsa_ipv6_required == true
   tags:
       - id_3.3.2
 
@@ -158,7 +156,7 @@
       dest: /etc/default/grub
       line: "ipv6 disable=1"
       state: present
-  when: ubu14gsa_ipv6_required == false
+  when: ubu14gsa_ipv6_disable == true
   tags:
       - id_3.3.3
 
