@@ -245,7 +245,18 @@
     name: libpam-pwquality
     state: present
 
-- name: "5.3.1 | Ensure password creation requirements are configured"
+- name: "5.3.1 | Ensure password creation requirements are configured (password-common)"
+  lineinfile:
+      state: present
+      dest: /etc/security/common-password
+      regexp: '^{{ item.key }}'
+      line: '{{ item.key }} = {{ item.value }}'
+  with_items:
+      - { key: 'minlen',  value: '16' }
+  tags:
+      - id_5.3.1
+
+- name: "5.3.1 | Ensure password creation requirements are configured (pwquality)"
   lineinfile:
       state: present
       dest: /etc/security/pwquality.conf
