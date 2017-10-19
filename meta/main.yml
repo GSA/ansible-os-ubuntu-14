@@ -1,13 +1,11 @@
 galaxy_info:
   author: "GSA and ISE"
-  description: "Ansible role to apply RHEL 7 GSA Baseline"
-  company:
-  license: MIT
+  description: "Ansible role to apply Ubuntu 14 GSA Baseline"
   min_ansible_version: 2.2
 
   platforms:
-  - name: EL
+  - name: Ubuntu
     versions:
-      - 7
+      - 14
 
 dependencies: []
