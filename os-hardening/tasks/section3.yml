@@ -153,7 +153,7 @@
 
 - name: "3.3.3 | Ensure IPv6 is disabled"
   lineinfile: >
-      dest=/etc/default/grub
+      dest=/boot/grub/grub.cfg
       regexp='GRUB_CMDLINE_LINUX="'
       line='GRUB_CMDLINE_LINUX="ipv6.disable=1'
       state=present
