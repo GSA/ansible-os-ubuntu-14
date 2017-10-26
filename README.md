@@ -1,9 +1,5 @@
-
-
 Ubuntu 14 GSA Benchmark
 ====================
-
-## This role is still under development
 
 This ansible content will configure Ubuntu 14 machine to be GSA compliant.
 
