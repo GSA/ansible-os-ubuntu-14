@@ -153,9 +153,8 @@
 
 - name: "3.3.3 | Ensure IPv6 is disabled"
   lineinfile: >
-      dest=/boot/grub/grub.cfg
-      regexp='GRUB_CMDLINE_LINUX="'
-      line='GRUB_CMDLINE_LINUX="ipv6.disable=1'
+      dest=/etc/default/grub
+      line='GRUB_CMDLINE_LINUX="ipv6.disable=1"'
       state=present
       create=yes
   when: ubu14gsa_ipv6_disable == true

@@ -70,7 +70,6 @@
 - name: "5.1.8 | Ensure at/cron is restricted to authorized users"
   file:
       dest: /etc/at.allow
-      state: touch
       owner: root
       group: root
       mode: 0600
@@ -87,7 +86,6 @@
 - name: "5.1.8 | Ensure at/cron is restricted to authorized users"
   file:
       dest: /etc/cron.allow
-      state: touch
       owner: root
       group: root
       mode: 0600
@@ -250,10 +248,10 @@
       state: present
       dest: /etc/security/pwquality.conf
       regexp: '^{{ item.key }}'
-      line: '{{ item.key }}={{ item.value }}'
+      line: '{{ item.key }} = {{ item.value }}'
   with_items:
       - { key: 'minlen',  value: '16' }
-      - { key: 'retry',  value: '3' }
+      - { key: 'retry',   value: '3' }
   tags:
       - id_5.3.1
 
