@@ -332,7 +332,7 @@
   lineinfile:
     state=present
     create=yes
-    dest=/etc/bashrc
+    dest=/etc/bash.bashrc
     line="umask 027"
   ignore_errors: true
   tags:
