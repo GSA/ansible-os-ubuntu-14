@@ -1,7 +1,7 @@
 version: 2
 jobs:
   test:
-    working_directory: ~/
+    #working_directory: ~/
     machine:
       ruby:
         version: 2.4
