@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  test:
+    working_directory: ~/
+    machine:
+      ruby:
+        version: 2.4
+    steps:
+      - checkout
+      - run:
+          name: Install bundler
+          command: gem install bundler
+      - run:
+          name: Install test-kitchen
+          command: bundle install
+      - run:
+          name: Run test-kitchen
+          command: bundle exec kitchen test -l debug test
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test

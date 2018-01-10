@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  vars:
+    - lock_shadow_accounts: False
+    - partitioning: False
+    - root_password: TestOnly
+    - Max_Log_File_Auditd: 200
+    - Remote_Logs_Host_Address: 127.0.0.1
+    - activate_ufw: False
+    - remove_xserver: True
+    - modify_user_homes: True
+    - use_apparmor: False
+    - use_pam_cracklib: True
+    - apt_upgrade: False
+    - restrict_core_dumps: False
+    - disable_ipv6: False
+    - run_shm_read_only: False
+  roles:
+   - ansible-os-ubuntu-14

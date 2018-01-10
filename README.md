@@ -1,5 +1,6 @@
 Ubuntu 14 GSA Benchmark
 ====================
+[![CircleCI](https://circleci.com/gh/GSA/ansible-os-ubuntu-14.svg?style=svg)](https://circleci.com/gh/GSA/ansible-os-ubuntu-14)
 
 This ansible content will configure Ubuntu 14 machine to be GSA compliant.
 
