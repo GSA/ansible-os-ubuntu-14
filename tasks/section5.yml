@@ -86,11 +86,13 @@
       - id_5.1.8
 
 - name: "5.1.8 | Ensure at/cron is restricted to authorized users"
-  file:
+  copy:
       dest: /etc/cron.allow
       owner: root
       group: root
       mode: 0600
+      content: ""
+      force: no
   tags:
       - id_5.1.8
 
